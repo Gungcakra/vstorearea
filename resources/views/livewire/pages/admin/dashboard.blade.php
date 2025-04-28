@@ -67,7 +67,7 @@
                         <div class="card-body d-flex align-items-end mb-3">
                             <!--begin::Info-->
                             <div class="d-flex justify-content-center flex-column">
-                                <span class="fs-2hx text-white fw-bold me-6">Rp {{ number_format($thisMonthIncome, 0, ',', '.') }}</span>
+                                <span class="fs-2hx text-white fw-bold me-6">Rp 0</span>
                                 {{-- <div class="fw-bold fs-6 text-white">
 									<span class="d-block">This Month</span>
 									<span class="">Income</span>
@@ -116,7 +116,7 @@
                         <div class="card-body d-flex align-items-end mb-3">
                             <!--begin::Info-->
                             <div class="d-flex align-items-center">
-                                <span class="fs-3hx text-white fw-bold me-6">{{ $thisMonthService }}</span>
+                                <span class="fs-3hx text-white fw-bold me-6">0</span>
                                 {{-- <div class="fw-bold fs-6 text-white">
 									<span class="d-block">Outbound</span>
 									<span class="">Calls</span>
@@ -201,7 +201,7 @@
                         <!--begin::Header-->
                         <div class="card-header border-0 pt-5">
                             <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold fs-3 mb-1">Recent Services Transaction</span>
+                                <span class="card-label fw-bold fs-3 mb-1">Recent Chart</span>
                                 {{-- <span class="text-muted fw-semibold fs-7">More than 1000 new records</span> --}}
                             </h3>
                             <!--begin::Toolbar-->
@@ -1225,118 +1225,117 @@
 			});
 		});
 
-		window.incomeChartData = @json($incomeChart);
-		console.log(window.incomeChartData);
+	
         
 
-        (function () {
-            var e = document.getElementById("kt_charts_widget_3_chart");
-            if (e) {
-            var t = { self: null, rendered: false };
+        // (function () {
+        //     var e = document.getElementById("kt_charts_widget_3_chart");
+        //     if (e) {
+        //     var t = { self: null, rendered: false };
 
-            var renderChart = function () {
-                var chartHeight = parseInt(KTUtil.css(e, "height"));
-                var gray500 = KTUtil.getCssVariableValue("--bs-gray-500");
-                var gray200 = KTUtil.getCssVariableValue("--bs-gray-200");
-                var infoColor = KTUtil.getCssVariableValue("--bs-info");
+        //     var renderChart = function () {
+        //         var chartHeight = parseInt(KTUtil.css(e, "height"));
+        //         var gray500 = KTUtil.getCssVariableValue("--bs-gray-500");
+        //         var gray200 = KTUtil.getCssVariableValue("--bs-gray-200");
+        //         var infoColor = KTUtil.getCssVariableValue("--bs-info");
 
-                var options = {
-                series: [
-                    {
-                    name: "Monthly Service",
-                    data: window.incomeChartData.map(item => item.income),
-                    },
-                ],
-                chart: {
-                    fontFamily: "inherit",
-                    type: "area",
-                    height: chartHeight,
-                    toolbar: { show: false },
-                },
-                plotOptions: {},
-                legend: { show: false },
-                dataLabels: { enabled: false },
-                fill: { type: "solid", opacity: 1 },
-                stroke: {
-                    curve: "smooth",
-                    show: true,
-                    width: 3,
-                    colors: [infoColor],
-                },
-                xaxis: {
-                    categories: window.incomeChartData.map(item => item.hour),
-                    axisBorder: { show: false },
-                    axisTicks: { show: false },
-                    labels: {
-                    style: {
-                        colors: gray500,
-                        fontSize: "12px",
-                    },
-                    },
-                    crosshairs: {
-                    position: "front",
-                    stroke: {
-                        color: infoColor,
-                        width: 1,
-                        dashArray: 3,
-                    },
-                    },
-                    tooltip: {
-                    enabled: true,
-                    offsetY: 0,
-                    style: { fontSize: "12px" },
-                    },
-                },
-                yaxis: {
-                    labels: {
-                    style: {
-                        colors: gray500,
-                        fontSize: "12px",
-                    },
-                    },
-                },
-                states: {
-                    normal: { filter: { type: "none", value: 0 } },
-                    hover: { filter: { type: "none", value: 0 } },
-                    active: {
-                    allowMultipleDataPointsSelection: false,
-                    filter: { type: "none", value: 0 },
-                    },
-                },
-                tooltip: {
-                    style: { fontSize: "12px" },
-                    y: {
-                    formatter: function (value) {
-                        return "Rp " + value + "K";
-                    },
-                    },
-                },
-                colors: [
-                    KTUtil.getCssVariableValue("--bs-info-light"),
-                ],
-                grid: {
-                    borderColor: gray200,
-                    strokeDashArray: 4,
-                    yaxis: { lines: { show: true } },
-                },
-                markers: { strokeColor: infoColor, strokeWidth: 3 },
-                };
+        //         var options = {
+        //         series: [
+        //             {
+        //             name: "Monthly Service",
+        //             data: window.incomeChartData.map(item => item.income),
+        //             },
+        //         ],
+        //         chart: {
+        //             fontFamily: "inherit",
+        //             type: "area",
+        //             height: chartHeight,
+        //             toolbar: { show: false },
+        //         },
+        //         plotOptions: {},
+        //         legend: { show: false },
+        //         dataLabels: { enabled: false },
+        //         fill: { type: "solid", opacity: 1 },
+        //         stroke: {
+        //             curve: "smooth",
+        //             show: true,
+        //             width: 3,
+        //             colors: [infoColor],
+        //         },
+        //         xaxis: {
+        //             categories: window.incomeChartData.map(item => item.hour),
+        //             axisBorder: { show: false },
+        //             axisTicks: { show: false },
+        //             labels: {
+        //             style: {
+        //                 colors: gray500,
+        //                 fontSize: "12px",
+        //             },
+        //             },
+        //             crosshairs: {
+        //             position: "front",
+        //             stroke: {
+        //                 color: infoColor,
+        //                 width: 1,
+        //                 dashArray: 3,
+        //             },
+        //             },
+        //             tooltip: {
+        //             enabled: true,
+        //             offsetY: 0,
+        //             style: { fontSize: "12px" },
+        //             },
+        //         },
+        //         yaxis: {
+        //             labels: {
+        //             style: {
+        //                 colors: gray500,
+        //                 fontSize: "12px",
+        //             },
+        //             },
+        //         },
+        //         states: {
+        //             normal: { filter: { type: "none", value: 0 } },
+        //             hover: { filter: { type: "none", value: 0 } },
+        //             active: {
+        //             allowMultipleDataPointsSelection: false,
+        //             filter: { type: "none", value: 0 },
+        //             },
+        //         },
+        //         tooltip: {
+        //             style: { fontSize: "12px" },
+        //             y: {
+        //             formatter: function (value) {
+        //                 return "Rp " + value + "K";
+        //             },
+        //             },
+        //         },
+        //         colors: [
+        //             KTUtil.getCssVariableValue("--bs-info-light"),
+        //         ],
+        //         grid: {
+        //             borderColor: gray200,
+        //             strokeDashArray: 4,
+        //             yaxis: { lines: { show: true } },
+        //         },
+        //         markers: { strokeColor: infoColor, strokeWidth: 3 },
+        //         };
 
-                t.self = new ApexCharts(e, options);
-                t.self.render();
-                t.rendered = true;
-            };
+        //         t.self = new ApexCharts(e, options);
+        //         t.self.render();
+        //         t.rendered = true;
+        //     };
 
-            renderChart();
+        //     renderChart();
 
-            KTThemeMode.on("kt.thememode.change", function () {
-                if (t.rendered) {
-                t.self.destroy();
-                }
-                renderChart();
-            });
-            }
-        })();
+        //     KTThemeMode.on("kt.thememode.change", function () {
+        //         if (t.rendered) {
+        //         t.self.destroy();
+        //         }
+        //         renderChart();
+        //     });
+        //     }
+        // })();
        
 
     </script>
