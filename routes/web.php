@@ -4,6 +4,7 @@ use App\Livewire\EmployeeManagement;
 use App\Livewire\Auth\Login;
 use App\Livewire\Dashboard;
 use App\Livewire\Departement;
+use App\Livewire\Game;
 use App\Livewire\MenuManagement;
 use App\Livewire\RolesPermissions;
 use App\Livewire\User;
@@ -18,10 +19,10 @@ Route::get('/logout', [Login::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', Dashboard::class)->name('dashboard');
     Route::get('/user', User::class)->name('user');
-    Route::get('/employee', EmployeeManagement::class)->name('employee');
     Route::get('/menu', MenuManagement::class)->name('menu');
-    Route::get('/roles',RolesPermissions::class)->name('role');
-    Route::get('/departement', Departement::class)->name('departement');
+    Route::get('/roles', RolesPermissions::class)->name('role');
+    Route::get('/game', Game::class)->name('game');
+    Route::get('/transaction', Game::class)->name('transaction'); 
     Route::get('/test', MenuManagement::class)->name('test');
 });
 Route::fallback(function () {

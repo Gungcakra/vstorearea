@@ -9,24 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('departement_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('phone')->nullable();
-            $table->text('address')->nullable();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->integer('price');
             $table->timestamps();
         });
     }
-    
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('games');
     }
 };

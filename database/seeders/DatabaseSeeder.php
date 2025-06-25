@@ -25,45 +25,20 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        Departement::insert([
-            ['name' => 'Mechanic', 'salary' => 6000000],
-            ['name' => 'Front Office', 'salary' => 5000000],
-            ['name' => 'Back Office', 'salary' => 5500000],
-            ['name' => 'Manager', 'salary' => 10000000],
-            ['name' => 'HRD', 'salary' => 8000000],
-        ]);
-        Employee::insert([
-            ['name' => 'John Doe', 'departement_id' => 4, 'phone' => '081234567890', 'address' => '123 Main St'],
-            ['name' => 'Jane Smith', 'departement_id' => 5, 'phone' => '081234567891', 'address' => '456 Elm St'],
-            ['name' => 'Alice Johnson', 'departement_id' => 2, 'phone' => '081234567892', 'address' => '789 Oak St'],
-            ['name' => 'Bob Brown', 'departement_id' => 1, 'phone' => '081234567893', 'address' => '101 Pine St'],
-            ['name' => 'Charlie Davis', 'departement_id' => 1, 'phone' => '081234567894', 'address' => '202 Maple St'],
-            ['name' => 'David Wilson', 'departement_id' => 1, 'phone' => '081234567895', 'address' => '303 Birch St'],
-            ['name' => 'Eve Taylor', 'departement_id' => 1, 'phone' => '081234567896', 'address' => '404 Cedar St'],
-            ['name' => 'Frank Harris', 'departement_id' => 1, 'phone' => '081234567897', 'address' => '505 Walnut St'],
-            ['name' => 'Grace Martin', 'departement_id' => 1, 'phone' => '081234567898', 'address' => '606 Cherry St'],
-            ['name' => 'Hank Lee', 'departement_id' => 1, 'phone' => '081234567899', 'address' => '707 Willow St'],
-            ['name' => 'Ivy Walker', 'departement_id' => 1, 'phone' => '081234567900', 'address' => '808 Ash St'],
-            ['name' => 'Jack Hall', 'departement_id' => 1, 'phone' => '081234567901', 'address' => '909 Poplar St'],
-        ]);
     
 
 
         $developer = Role::firstOrCreate(['name' => 'developer', 'guard_name' => 'web']);
         $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
 
-        $employee = Role::firstOrCreate(['name' => 'employee', 'guard_name' => 'web']);
-
         // Define permissions
         $permissions = [
             'dashboard',
             'masterdata-user',
-            'masterdata-employee',
+            'masterdata-game',
             'masterdata-menu',
-            'masterdata-departement',
+            'masterdata-transaction',
             'masterdata-role',
-
-                    
         ];
 
         foreach ($permissions as $permission) {
@@ -74,27 +49,22 @@ class DatabaseSeeder extends Seeder
         $developer->syncPermissions([
             'dashboard',
             'masterdata-user',
-            'masterdata-employee',
+            'masterdata-game',
             'masterdata-menu',
-            'masterdata-departement',
+            'masterdata-transaction',
             'masterdata-role',
         ]);
 
         $admin->syncPermissions([
             'dashboard',
             'masterdata-user',
-            'masterdata-employee',
-            'masterdata-role',
+            'masterdata-game',
             'masterdata-menu',
-            'masterdata-departement',
-        ]);
-
-        $employee->syncPermissions([
-            'dashboard'
+            'masterdata-transaction',
+            'masterdata-role',
         ]);
 
         // Create a developer user
-
         $developerUser = User::factory()->create([
             'name' => 'developer',
             'email' => 'dev@me',
@@ -102,16 +72,13 @@ class DatabaseSeeder extends Seeder
         ]);
         $developerUser->assignRole('developer');
 
-        $admin =  User::factory()->create([
+        $adminUser = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123')
         ]);
-        $admin->assignRole('admin');
+        $adminUser->assignRole('admin');
 
-        
-
-        
         // Menu Dashboard
         $dashboard = Menu::create([
             'name' => 'Dashboard',
@@ -126,18 +93,17 @@ class DatabaseSeeder extends Seeder
             'route' => 'dashboard',
             'order' => 1,
             'permission_id' => Permission::where('name', 'dashboard')->first()->id
-
         ]);
 
-         // Menu Master Data
-         $masterData = Menu::create([
+        // Menu Master Data
+        $masterData = Menu::create([
             'name' => 'Master Data',
             'icon' => 'fa-solid fa-database',
             'route' => null,
             'order' => 2
         ]);
 
-        Submenu::create([
+        SubMenu::create([
             'menu_id' => $masterData->id,
             'name' => 'User',
             'route' => 'user',
@@ -145,7 +111,7 @@ class DatabaseSeeder extends Seeder
             'permission_id' => Permission::where('name', 'masterdata-user')->first()->id
         ]);
 
-        Submenu::create([
+        SubMenu::create([
             'menu_id' => $masterData->id,
             'name' => 'Role',
             'route' => 'role',
@@ -153,22 +119,23 @@ class DatabaseSeeder extends Seeder
             'permission_id' => Permission::where('name', 'masterdata-role')->first()->id
         ]);
 
-        Submenu::create([
+        SubMenu::create([
             'menu_id' => $masterData->id,
-            'name' => 'Departement',
-            'route' => 'departement',
+            'name' => 'Game',
+            'route' => 'game',
             'order' => 2,
-            'permission_id' => Permission::where('name', 'masterdata-departement')->first()->id
-        ]);
-        Submenu::create([
-            'menu_id' => $masterData->id,
-            'name' => 'Employee',
-            'route' => 'employee',
-            'order' => 3,
-            'permission_id' => Permission::where('name', 'masterdata-employee')->first()->id
+            'permission_id' => Permission::where('name', 'masterdata-game')->first()->id
         ]);
 
-        Submenu::create([
+        SubMenu::create([
+            'menu_id' => $masterData->id,
+            'name' => 'Transaction',
+            'route' => 'transaction',
+            'order' => 3,
+            'permission_id' => Permission::where('name', 'masterdata-transaction')->first()->id
+        ]);
+
+        SubMenu::create([
             'menu_id' => $masterData->id,
             'name' => 'Menu',
             'route' => 'menu',
