@@ -34,7 +34,7 @@ $menus = Menu::with('submenus')->get();
                             <span class="menu-title">Home</span>
                         </a>
                     </div>
-                    <div class="menu-item">
+                    {{-- <div class="menu-item">
                         <a class="menu-link {{ request()->routeIs('games.discover') ? 'active' : '' }}" href="{{ route('games.discover') }}">
                             <span class="menu-icon">
                                 <i class="ki-outline ki-compass fs-2"></i>
@@ -57,7 +57,7 @@ $menus = Menu::with('submenus')->get();
                             </span>
                             <span class="menu-title">My Games</span>
                         </a>
-                    </div>
+                    </div> --}}
 
 
                 </div>
