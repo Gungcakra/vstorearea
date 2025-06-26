@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('game_id')->constrained()->onDelete('cascade');
-            $table->string('buyer_name');
-            $table->string('buyer_email');
-            $table->integer('price');
-            $table->string('payment_status')->default('pending');
+            $table->string('email');
+            $table->integer(    'price');
+            $table->string('payment_method');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

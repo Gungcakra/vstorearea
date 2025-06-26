@@ -57,11 +57,11 @@ class DatabaseSeeder extends Seeder
 
         $admin->syncPermissions([
             'dashboard',
-            'masterdata-user',
+            // 'masterdata-user',
             'masterdata-game',
-            'masterdata-menu',
+            // 'masterdata-menu',
             'masterdata-transaction',
-            'masterdata-role',
+            // 'masterdata-role',
         ]);
 
         // Create a developer user
@@ -75,7 +75,7 @@ class DatabaseSeeder extends Seeder
         $adminUser = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('admin123')
+            'password' => bcrypt('yayasayasetuju')
         ]);
         $adminUser->assignRole('admin');
 
@@ -145,7 +145,9 @@ class DatabaseSeeder extends Seeder
 
        
 
-
+        $this->call([
+            GameSeeder::class,
+        ]);
      
 
        

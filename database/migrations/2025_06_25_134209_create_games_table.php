@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->string('photo');
             $table->integer('price');
             $table->timestamps();
+            $table->softDeletes(); 
         });
     }
     /**

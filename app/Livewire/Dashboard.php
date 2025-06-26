@@ -24,7 +24,10 @@ class Dashboard extends Component
     }
     public function render()
     {
-        return view('livewire.pages.admin.dashboard');
+        return view('livewire.pages.admin.dashboard',[
+            'totalGames' => \App\Models\Game::count(),
+            'totalSales' => \App\Models\Transaction::count(),
+        ]);
     }
 
 }

@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('disk_space')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

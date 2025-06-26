@@ -3,10 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Game extends Model
 {
-    protected $fillable = ['title', 'description', 'price'];
+    use SoftDeletes;
+    protected $fillable = ['title', 'photo', 'description', 'price'];
 
     public function specs()
     {
@@ -16,5 +18,15 @@ class Game extends Model
     public function transactions()
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($game) {
+            // Delete related specs
+            $game->specs()->delete();
+        });
     }
 }

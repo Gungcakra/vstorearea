@@ -67,7 +67,7 @@
                         <div class="card-body d-flex align-items-end mb-3">
                             <!--begin::Info-->
                             <div class="d-flex justify-content-center flex-column">
-                                <span class="fs-2hx text-white fw-bold me-6">Rp 0</span>
+                                <span class="fs-2hx text-white fw-bold me-6">{{ $totalGames }}</span>
                                 {{-- <div class="fw-bold fs-6 text-white">
 									<span class="d-block">This Month</span>
 									<span class="">Income</span>
@@ -80,8 +80,8 @@
                         <div class="card-footer" style="border-top: 1px solid rgba(255, 255, 255, 0.3);background: rgba(0, 0, 0, 0.15);">
                             <!--begin::Progress-->
                             <div class="fw-bold text-white py-2">
-                                <span class="fs-1 d-block">This Month</span>
-                                <span class="opacity-50">Income</span>
+                                <span class="fs-1 d-block">Total Games</span>
+                                {{-- <span class="opacity-50">Income</span> --}}
                             </div>
                             <!--end::Progress-->
                         </div>
@@ -116,7 +116,7 @@
                         <div class="card-body d-flex align-items-end mb-3">
                             <!--begin::Info-->
                             <div class="d-flex align-items-center">
-                                <span class="fs-3hx text-white fw-bold me-6">0</span>
+                                <span class="fs-3hx text-white fw-bold me-6">{{ $totalSales }}</span>
                                 {{-- <div class="fw-bold fs-6 text-white">
 									<span class="d-block">Outbound</span>
 									<span class="">Calls</span>
@@ -129,8 +129,8 @@
                         <div class="card-footer" style="border-top: 1px solid rgba(255, 255, 255, 0.3);background: rgba(0, 0, 0, 0.15);">
                             <!--begin::Progress-->
                             <div class="fw-bold text-white py-2">
-                                <span class="fs-1 d-block">This Month</span>
-                                <span class="opacity-50">Service</span>
+                                <span class="fs-1 d-block">Total Sales</span>
+                                {{-- <span class="opacity-50">Service</span> --}}
                             </div>
                             <!--end::Progress-->
                         </div>
@@ -194,36 +194,7 @@
                 </div> --}}
                 <!--end::Col-->
             </div>
-            <div class="row g-5 g-xl-8">
-                <div class="col-xl-12">
-                    <!--begin::Charts Widget 3-->
-                    <div class="card card-xl-stretch mb-xl-8">
-                        <!--begin::Header-->
-                        <div class="card-header border-0 pt-5">
-                            <h3 class="card-title align-items-start flex-column">
-                                <span class="card-label fw-bold fs-3 mb-1">Recent Chart</span>
-                                {{-- <span class="text-muted fw-semibold fs-7">More than 1000 new records</span> --}}
-                            </h3>
-                            <!--begin::Toolbar-->
-                            {{-- <div class="card-toolbar" data-kt-buttons="true">
-                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary active px-4 me-1" id="kt_charts_widget_3_year_btn">Year</a>
-                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4 me-1" id="kt_charts_widget_3_month_btn">Month</a>
-                                <a class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4" id="kt_charts_widget_3_week_btn">Week</a>
-                            </div> --}}
-                            <!--end::Toolbar-->
-                        </div>
-                        <!--end::Header-->
-                        <!--begin::Body-->
-                        <div class="card-body">
-                            <!--begin::Chart-->
-                            <div id="kt_charts_widget_3_chart" style="height: 350px"></div>
-                            <!--end::Chart-->
-                        </div>
-                        <!--end::Body-->
-                    </div>
-                    <!--end::Charts Widget 3-->
-                </div>
-            </div>
+         
             <!--end::Row-->
             <!--begin::Row-->
             {{-- <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
